@@ -1,0 +1,30 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "text",
+        "boost": 5
+      },
+      "name": {
+        "type": "text",
+        "boost": 3
+      },
+      "summary": {
+        "type": "text",
+        "boost": 2
+      },
+      "slug": {
+        "type": "text"
+      },
+      "born_in": {
+        "type": "text"
+      },
+      "poster": {
+        "type": "text"
+      },
+      "birth": {
+        "type": "date"
+      }
+    }
+  }
+}

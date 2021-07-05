@@ -1,0 +1,53 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "text",
+        "boost": 5
+      },
+      "name": {
+        "type": "text",
+        "boost": 4
+      },
+      "summary": {
+        "type": "text",
+        "boost": 2
+      },
+      "tags": {
+        "type": "text",
+        "boost": 2
+      },
+      "genres": {
+        "type": "text"
+      },
+      "slug": {
+        "type": "text"
+      },
+      "type": {
+        "type": "text"
+      },
+      "rating": {
+        "type": "text"
+      },
+      "poster": {
+        "type": "text"
+      },
+      "collection": {
+        "type": "text",
+        "boost": 2
+      },
+      "productions": {
+        "type": "text"
+      },
+      "theatersDate": {
+        "type": "text"
+      },
+      "streamings": {
+        "type": "text"
+      },
+      "lemonScore": {
+        "type": "text"
+      }
+    }
+  }
+}

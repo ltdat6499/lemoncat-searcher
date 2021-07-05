@@ -1,50 +1,30 @@
-const elasticsearch = require("elasticsearch");
 const express = require("express");
 const app = express();
-const client = new elasticsearch.Client({
-  hosts: ["http://elastic:changeme@127.0.0.1:9200/"],
-});
-app.set("port", 2945);
+app.set("port", 3843);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+const searcher = require("./mappings/searcher");
 
-app.get("/", (req, res) => {
-  let body = {
-    size: 10,
-    from: 0,
-    query: {
-      match: req.body,
-    },
-  };
-  client
-    .search({ index: "viet-nam-work", body: body, type: "work_list" })
-    .then((results) => {
-      res.json(results);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send([]);
-    });
+app.get("/person/search", async (req, res) => {
+  const data = await searcher.person(req.body.keywords, req.body.size || 10);
+  res.json(data);
 });
 
-app.get("/nested", (req, res) => {
-  let body = {
-    size: 10,
-    from: 0,
-    query: {
-      nested: req.body,
-      score_mode: "avg",
-    },
-  };
-  client
-    .search({ index: "viet-nam-work", body, type: "nested" })
-    .then((results) => {
-      res.json(results);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send([]);
-    });
+app.get("/flim/search", async (req, res) => {
+  const data = await searcher.flim(req.body.keywords, req.body.size || 10);
+  res.json(data);
+});
+
+app.get("/post/search", async (req, res) => {
+  const data = await searcher.post(req.body.keywords, req.body.size || 10);
+  res.json(data);
+});
+
+app.get("/all/search", async (req, res) => {
+  const person = await searcher.person(req.body.keywords, req.body.size || 10);
+  const flim = await searcher.flim(req.body.keywords, req.body.size || 10);
+  const post = await searcher.post(req.body.keywords, req.body.size || 10);
+  res.json({ person, flim, post });
 });
 
 app.listen(app.get("port"), () => {

@@ -1,0 +1,30 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "text",
+        "boost": 5
+      },
+      "title": {
+        "type": "text",
+        "boost": 3
+      },
+      "content": {
+        "type": "text",
+        "boost": 2
+      },
+      "section": {
+        "type": "text"
+      },
+      "tags": {
+        "type": "text"
+      },
+      "poster": {
+        "type": "text"
+      },
+      "slug": {
+        "type": "text"
+      }
+    }
+  }
+}
